@@ -9,12 +9,12 @@ time_t getTime(){
 
 void setTimer(int d){
 	time_t start;
+	printf("Timer set for %d seconds.\n",d);
 	time(&start);
-	printf("Timer set for %d seconds",d);
 	while((int)difftime(getTime(),start)<d){
 	//i can implement "time is almost up" warning here if id like
 	}
-	printf("Time is up!!!\n%d seconds have passed!",d);
+	printf("Time is up!!!\n%d seconds have passed!\n",d);
 }
 
 int main(int argc, char ** argv){
@@ -26,19 +26,13 @@ int main(int argc, char ** argv){
 		p++;
 	}
 	p--;
-	while(*p!=argv[argc-1]){
-		*q=*p;
-		q++;
-		p--;
-	}
-	*q=*p;q++;*q='\0';
-	p=tmp;
 	int t=0;int e=1;
-	while(*p!='\0'){
+	while(p!=argv[argc-1]){
 		t+=(*p-'0')*e;
 		e*=10;
-		p++;
+		p--;
 	}
+		t+=(*p-'0')*e;
 	setTimer(t);
 
 	return 0;
